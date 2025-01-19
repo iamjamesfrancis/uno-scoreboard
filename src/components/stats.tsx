@@ -13,7 +13,6 @@ const Stats = () => {
                         <div className="flex gap-3">James<Crown className="text-red-600" /></div>
                         <div className="flex gap-3">129<Trophy className="text-red-600" /></div>
                     </div>
-
                 </CardContent>
             </Card>
 
@@ -21,7 +20,7 @@ const Stats = () => {
                 <CardHeader className="text-red-600">
                     <CardTitle>Limit</CardTitle>
                 </CardHeader>
-                <CardContent className="text-white flex flex-col gap-2 items-center">
+                <CardContent className="text-white flex flex-col gap-2 items-center relative">
                     <ConicChart />
                 </CardContent>
             </Card>
