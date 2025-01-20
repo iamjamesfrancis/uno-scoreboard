@@ -31,13 +31,19 @@ const counter = createSlice({
     initialState,
     reducers: {
         addPlayer: (state, action) => {
+            localStorage.setItem('players', JSON.stringify([...state.players, action.payload]));
             state.players.push(action.payload);
         },
         deletePlayer: (state, action) => {
+            localStorage.setItem('players', JSON.stringify(state.players.filter(player => player.id !== action.payload)));
             state.players = state.players.filter(player => player.id !== action.payload);
+        },
+        deleteAllPlayers: (state) => {
+            localStorage.setItem('players', JSON.stringify([]));
+            state.players = [];
         }
     },
 });
 
-export const { addPlayer, deletePlayer } = counter.actions;
+export const { addPlayer, deletePlayer, deleteAllPlayers } = counter.actions;
 export default counter.reducer;
