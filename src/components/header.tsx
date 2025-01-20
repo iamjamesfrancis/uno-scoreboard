@@ -1,6 +1,7 @@
 import { Users, RotateCcw, Settings } from "lucide-react"
 import { Button } from './ui/button'
 import UnoImage from "../assets/uno_icon.png"
+import Players from "./sub/players"
 
 const Header = () => {
     return (
@@ -11,11 +12,9 @@ const Header = () => {
                 </div>
                 <div className='text-3xl text-yellow-200 font-bold'>SCOREBOARD</div>
             </div>
-            <div>
-                <Button variant="default" size="icon" className="mr-2 bg-blue-500 hover:bg-blue-900" onClick={() => alert('Players')}>
-                    <Users />
-                </Button>
-                <Button variant="default" size="icon" className="mr-2 bg-red-500 hover:bg-red-900" onClick={() => alert('Reset')}>
+            <div className="flex items-center justify-center gap-3">
+                <Players />
+                <Button variant="default" size="icon" className="mr-2 bg-red-500 hover:bg-red-900">
                     <RotateCcw />
                 </Button>
                 <Button variant="default" size="icon" className="mr-2 bg-slate-700 hover:bg-slate-900" onClick={() => alert('Settings')}>
