@@ -7,34 +7,31 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
+import { useSelector } from "react-redux"
+import { RootState } from "../../state/store"
+
 const ScoreboardTable = () => {
+    const players = useSelector((state: RootState) => state.players.players)
+
     return (
         <div className="overflow-hidden rounded-lg border border-x-white">
             <Table className="text-center text-base">
                 <TableHeader className="text-white text-center">
                     <TableRow>
-                        <TableHead className="text-white text-center">James</TableHead>
-                        <TableHead className="text-white text-center">Aljin</TableHead>
-                        <TableHead className="text-white text-center">Joyal</TableHead>
+                        {players && players.map(player => {
+                            return (
+                                <TableHead key={player.id} className="text-white text-center">{player.name}</TableHead>
+                            )
+                        })}
                     </TableRow>
                 </TableHeader>
-                <TableBody>
-                    <TableRow key={1}>
-                        <TableCell>{1}</TableCell>
-                        <TableCell>{2}</TableCell>
-                        <TableCell>{3}</TableCell>
+                {/* <TableBody>
+                    <TableRow key="">
+                        <TableCell>1</TableCell>
+                        <TableCell>2</TableCell>
+                        <TableCell>3</TableCell>
                     </TableRow>
-                    <TableRow key={1}>
-                        <TableCell>{1}</TableCell>
-                        <TableCell>{2}</TableCell>
-                        <TableCell>{3}</TableCell>
-                    </TableRow>
-                    <TableRow key={1}>
-                        <TableCell>{1}</TableCell>
-                        <TableCell>{2}</TableCell>
-                        <TableCell>{3}</TableCell>
-                    </TableRow>
-                </TableBody>
+                </TableBody> */}
             </Table>
         </div>
     )

@@ -11,9 +11,14 @@ import { Users, UserRoundPlus, X, UserRound, Trash2, UserRoundPen } from "lucide
 import { Button, } from "../ui/button"
 import { motion } from "motion/react"
 import { useRef } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "../../state/store"
+import { deletePlayer } from "../../state/players/playersSlice"
 
 const Players = () => {
-    const constraintsRef = useRef<HTMLDivElement>(null)
+    const constraintsRef = useRef<HTMLDivElement>(null);
+    const players = useSelector((state: RootState) => state.players.players);
+    const dispatch = useDispatch();
     return (
         <motion.div>
             <motion.div drag
@@ -43,35 +48,25 @@ const Players = () => {
                                     </Button>
                                 </div>
                                 <div className="flex flex-col gap-2">
-                                    <div className="flex justify-between items-center">
-                                        <div className="flex items-center gap-2">
-                                            <UserRound />
-                                            <div>Player 1</div>
-                                        </div>
-                                        <div className="flex gap-2">
-                                            <Button variant="default" size="icon" className="bg-blue-500 hover:bg-blue-900">
-                                                <UserRoundPen />
-                                            </Button>
-                                            <Button variant="default" size="icon" className="bg-red-500 hover:bg-red-900">
-                                                <Trash2 />
-                                            </Button>
-                                        </div>
+                                    {players && players.map(player => {
+                                        return (<div key={player.id} className="flex justify-between items-center">
+                                            <div className="flex items-center gap-2">
+                                                <UserRound />
+                                                <div>{player.name}</div>
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <Button variant="default" size="icon" className="bg-blue-500 hover:bg-blue-900">
+                                                    <UserRoundPen />
+                                                </Button>
+                                                <Button variant="default" size="icon" className="bg-red-500 hover:bg-red-900" onClick={() => {
+                                                    dispatch(deletePlayer(player.id))
+                                                }}>
+                                                    <Trash2 />
+                                                </Button>
+                                            </div>
 
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <div className="flex items-center gap-2">
-                                            <UserRound />
-                                            <div>Player 1</div>
-                                        </div>
-                                        <div className="flex gap-2">
-                                            <Button variant="default" size="icon" className="bg-blue-500 hover:bg-blue-900">
-                                                <UserRoundPen />
-                                            </Button>
-                                            <Button variant="default" size="icon" className="bg-red-500 hover:bg-red-900">
-                                                <Trash2 />
-                                            </Button>
-                                        </div>
-                                    </div>
+                                        </div>)
+                                    })}
                                 </div>
                             </AlertDialogDescription>
                         </AlertDialogHeader>
