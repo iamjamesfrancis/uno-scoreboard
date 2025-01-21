@@ -4,6 +4,7 @@ import UnoImage from "../assets/uno_icon.png"
 import Players from "./sub/players"
 import { useDispatch } from "react-redux"
 import { deleteAllPlayers } from "../state/players/playersSlice"
+import { deleteAllScores } from "../state/scoreboard/scoreboardSlice"
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -17,7 +18,10 @@ const Header = () => {
             </div>
             <div className="flex items-center justify-center gap-3">
                 <Players />
-                <Button variant="default" size="icon" className="mr-2 bg-red-500 hover:bg-red-900" onClick={() => dispatch(deleteAllPlayers())}>
+                <Button variant="default" size="icon" className="mr-2 bg-red-500 hover:bg-red-900" onClick={() => {
+                    dispatch(deleteAllPlayers())
+                    dispatch(deleteAllScores())
+                }}>
                     <RotateCcw />
                 </Button>
                 <Button variant="default" size="icon" className="mr-2 bg-slate-700 hover:bg-slate-900" onClick={() => alert('Settings')}>

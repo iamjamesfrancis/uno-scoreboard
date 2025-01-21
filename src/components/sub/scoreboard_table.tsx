@@ -12,6 +12,15 @@ import { RootState } from "../../state/store"
 
 const ScoreboardTable = () => {
     const players = useSelector((state: RootState) => state.players.players)
+    const scoreboard = useSelector((state: RootState) => state.scoreboard.scores)
+    const groupedByGame = scoreboard.reduce((acc, score) => {
+        if (!acc[score.game]) {
+            acc[score.game] = []
+        }
+        acc[score.game].push(score)
+        return acc
+    }
+        , {} as { [key: number]: { player: string, score: number, game: number, isUpdated: boolean }[] })
 
     return (
         <div className="overflow-hidden rounded-lg border border-x-white">
@@ -25,13 +34,20 @@ const ScoreboardTable = () => {
                         })}
                     </TableRow>
                 </TableHeader>
-                {/* <TableBody>
-                    <TableRow key="">
-                        <TableCell>1</TableCell>
-                        <TableCell>2</TableCell>
-                        <TableCell>3</TableCell>
-                    </TableRow>
-                </TableBody> */}
+                <TableBody>
+                    {Object.keys(groupedByGame).map(game => {
+                        return (
+                            <TableRow key={game}>
+                                {players.map(player => {
+                                    const score = groupedByGame[parseInt(game)].find(score => score.player === player.id)
+                                    return (
+                                        <TableCell key={player.id} className="text-white">{score?.score || 0}</TableCell>
+                                    )
+                                })}
+                            </TableRow>
+                        )
+                    })}
+                </TableBody>
             </Table>
         </div>
     )
