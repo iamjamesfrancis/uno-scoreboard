@@ -7,13 +7,14 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+
 import { Users, UserRoundPlus, X, UserRound, Trash2, UserRoundPen } from "lucide-react"
 import { Button, } from "../ui/button"
 import { motion } from "motion/react"
 import { useRef } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "../../state/store"
-import { deletePlayer } from "../../state/players/playersSlice"
+import { addPlayer, deletePlayer } from "../../state/players/playersSlice"
 
 const Players = () => {
     const constraintsRef = useRef<HTMLDivElement>(null);
@@ -43,7 +44,14 @@ const Players = () => {
                             </AlertDialogTitle>
                             <AlertDialogDescription className="flex flex-col gap-2 p-3">
                                 <div>
-                                    <Button variant="outline" size="icon" className="bg-blue-500 hover:bg-blue-900 w-auto p-2 text-white hover:text-white">
+                                    <Button variant="outline" size="icon" className="bg-blue-500 hover:bg-blue-900 w-auto p-2 text-white hover:text-white" onClick={() => {
+                                        if (players) {
+                                            const name = prompt("Enter player name");
+                                            if (name) {
+                                                dispatch(addPlayer({ id: crypto.randomUUID(), name: name }))
+                                            }
+                                        }
+                                    }}>
                                         <UserRoundPlus /> Add Player
                                     </Button>
                                 </div>

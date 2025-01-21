@@ -9,22 +9,15 @@ interface PlayersState {
     players: Player[];
 }
 
-const initialState: PlayersState = {
-    players: [
-        {
-            id: '1',
-            name: 'James',
-        },
-        {
-            id: '2',
-            name: 'Aljin',
-        },
-        {
-            id: '3',
-            name: 'Joyal',
-        },
-    ],
+const loadInitialState = (): PlayersState => {
+    const storedPlayers = localStorage.getItem("players");
+    return storedPlayers
+        ? { players: JSON.parse(storedPlayers) }
+        : { players: [] }; // Default state if no players in localStorage
 };
+
+// Initialize the state
+const initialState: PlayersState = loadInitialState();
 
 const counter = createSlice({
     name: 'players',
