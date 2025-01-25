@@ -16,9 +16,9 @@ const SettingsConfig = () => {
                 <AlertDialogContent className="bg-gray-950 text-white border-gray-800 w-1/4">
                     <AlertDialogHeader>
                         <AlertDialogTitle className="text-xl font-bold flex justify-between">
-                            <div>Scores</div>
+                            <div>Settings</div>
                             <div>
-                                <AlertDialogCancel className="border border-gray-800 hover:bg-red-500 bg-transparent p-3 hover:text-white">
+                                <AlertDialogCancel className="border border-gray-800 hover:bg-gray-700 bg-transparent p-3 hover:text-white">
                                     <X />
                                 </AlertDialogCancel>
                             </div>
