@@ -2,12 +2,13 @@ import { motion } from "framer-motion"
 import { RootState } from "../state/store"
 import ConicChart from "./sub/conic_chart"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { Crown, Sparkles } from "lucide-react"
+import { Crown } from "lucide-react"
 import { useSelector } from "react-redux"
 
 const Stats = () => {
     const players = useSelector((state: RootState) => state.players.players)
     const scoreboard = useSelector((state: RootState) => state.scoreboard.scores)
+    const settings = useSelector((state: RootState) => state.settings)
 
     // Group and calculate total score per player
     const groupedByPlayer = scoreboard.reduce((acc, item) => {
@@ -29,8 +30,7 @@ const Stats = () => {
     return (
         <div className="col-span-2 p-5 grid grid-cols-2 gap-5">
             <Card className="bg-gray-900 border-red-600 col-span-2">
-
-                <CardContent className="text-white flex flex-col gap-2 mt-3">
+                <CardContent className={`text-white flex flex-col gap-2 mt-3 ${Object.keys(groupedByPlayer).length === 0 && "hidden"}`} >
                     <div>
                         <div className="flex justify-between">
                             <div>Player</div>
@@ -61,9 +61,13 @@ const Stats = () => {
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             transition={{ type: "spring", damping: 25 }}
-                                            className={`${index === 0 && "text-yellow-400 font-semibold"}`}
+                                            className={`${index === 0 && "text-yellow-400 font-semibold "} ${settings.hideTotalScore && "blur-sm select-none"}`}
                                         >
-                                            {groupedByPlayer[player.id].total}
+                                            {
+                                                settings.hideTotalScore ?
+                                                    <>123</> :
+                                                    <>{groupedByPlayer[player.id].total}</>
+                                            }
                                         </motion.div>
                                     </div>
                                 }

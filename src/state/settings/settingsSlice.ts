@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface SettingsState {
     theme: string;
+    limit: number;
     hideTotalScore: boolean;
     enableScoreEdit: boolean;
     enableScoreLimit: boolean;
@@ -19,6 +20,7 @@ const loadInitialState = (): SettingsState => {
             enableScoreLimit: true,
             enableScoreReset: true,
             hideTotalScore: false,
+            limit: 100,
             theme: 'dark',
         };
 }
@@ -32,6 +34,10 @@ const settings = createSlice({
         setTheme: (state: SettingsState, action: PayloadAction<string>) => {
             localStorage.setItem('settings', JSON.stringify({ ...state, theme: action.payload }));
             state.theme = action.payload;
+        },
+        setLimit: (state: SettingsState, action: PayloadAction<number>) => {
+            localStorage.setItem('settings', JSON.stringify({ ...state, limit: action.payload }));
+            state.limit = action.payload;
         },
         toggleHideTotalScore: (state: SettingsState) => {
             localStorage.setItem('settings', JSON.stringify({ ...state, hideTotalScore: !state.hideTotalScore }));
@@ -57,5 +63,5 @@ const settings = createSlice({
 });
 
 
-export const { setTheme, toggleHideTotalScore, toggleEnableScoreEdit, toggleEnableScoreLimit, toggleEnablePlayersReset, toggleEnableScoreReset } = settings.actions;
+export const { setTheme, toggleHideTotalScore, toggleEnableScoreEdit, toggleEnableScoreLimit, toggleEnablePlayersReset, toggleEnableScoreReset, setLimit } = settings.actions;
 export default settings.reducer;

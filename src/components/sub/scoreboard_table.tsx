@@ -39,12 +39,10 @@ const ScoreboardTable = () => {
                         return (
                             <TableRow key={game}>
                                 {players.map(player => {
-                                    const score = groupedByGame[parseInt(game)].find(score => score.player === player.id)
-                                    if (score) {
-                                        return (
-                                            <TableCell key={player.id} className="text-white">{score?.score || 0}</TableCell>
-                                        )
-                                    }
+                                    const score = groupedByGame[parseInt(game)].find(score => score.player === player.id)?.score
+                                    return (
+                                        <TableCell key={player.id} className="text-white">{score ? score : 0}</TableCell>
+                                    )
                                 })}
                             </TableRow>
                         )
