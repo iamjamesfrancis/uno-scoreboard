@@ -14,18 +14,15 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { motion } from "motion/react"
-import { useState } from "react"
+import { AlertDialogAction, AlertDialogCancel } from "../ui/alert-dialog"
 
 const Reset = () => {
     const dispatch = useDispatch()
     const settings = useSelector((state: RootState) => state.settings)
-    const [dialogOpen, setDialogOpen] = useState(false)
     return (
-        <AlertDialog open={dialogOpen}>
+        <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button variant="default" size="icon" className="mr-2 bg-red-500 hover:bg-red-900" disabled={!settings.enablePlayersReset && !settings.enableScoreReset} onClick={() =>
-                    setDialogOpen(true)
-                }>
+                <Button variant="default" size="icon" className="mr-2 bg-red-500 hover:bg-red-900" disabled={!settings.enablePlayersReset && !settings.enableScoreReset}>
                     <RotateCcw />
                 </Button>
             </AlertDialogTrigger>
@@ -34,21 +31,19 @@ const Reset = () => {
                     <AlertDialogTitle className="text-xl font-bold flex justify-between">
                         <div>Are you absolutely sure?</div>
                         <motion.div>
-                            <Button className="border border-gray-800 hover:bg-green-600 bg-transparent p-3 hover:text-white" onClick={() => setDialogOpen(false)}>
+                            <AlertDialogCancel className="border border-gray-800 hover:bg-gray-700 bg-transparent p-3 hover:text-white">
                                 <X />
-                            </Button>
+                            </AlertDialogCancel>
                         </motion.div>
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                         This action cannot be undone. This will permanently delete
-                        {`${settings.enablePlayersReset ? " players and scores" : ""}${!settings.enablePlayersReset && settings.enableScoreReset ? " scores" : ""
-                            }`}
-                        .
+                        {`${settings.enablePlayersReset ? " players and scores" : ""}${!settings.enablePlayersReset && settings.enableScoreReset ? " scores" : ""}`}.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <Button className="bg-green-600 hover:bg-green-900 border-none" onClick={() => setDialogOpen(false)}>Cancel</Button>
-                    <Button className="border border-gray-800 hover:bg-red-500 bg-transparent p-3 hover:text-white" onClick={() => {
+                    <AlertDialogCancel className="bg-green-600 hover:bg-green-900 hover:text-white border-none">Cancel</AlertDialogCancel>
+                    <AlertDialogAction className="border border-gray-800 hover:bg-red-500 bg-transparent p-3 hover:text-white" onClick={() => {
                         if (settings.enablePlayersReset) {
                             dispatch(deleteAllPlayers())
                             dispatch(deleteAllScores())
@@ -56,8 +51,8 @@ const Reset = () => {
                         if (settings.enableScoreReset) {
                             dispatch(deleteAllScores())
                         }
-                        setDialogOpen(false)
-                    }}>Continue</Button>
+                        return
+                    }}>Continue</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
