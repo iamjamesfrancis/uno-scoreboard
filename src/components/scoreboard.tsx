@@ -19,7 +19,6 @@ const Scoreboard = () => {
     const [scores, setScores] = useState<Score[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.name, e.target.value);
         if (gameNumber) {
             setScores(prev => {
                 prev.push({ player: e.target.name, score: parseInt(e.target.value), game: gameNumber, isUpdated: false })

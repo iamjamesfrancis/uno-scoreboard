@@ -28,8 +28,6 @@ const scoreboard = createSlice({
     initialState,
     reducers: {
         addScore: (state: ScoreboardState, action: PayloadAction<Score>) => {
-            console.log(state.scores);
-            console.log(action.payload);
             localStorage.setItem('scores', JSON.stringify([...state.scores, action.payload]));
             state.scores.push(action.payload);
         },
