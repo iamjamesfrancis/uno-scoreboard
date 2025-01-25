@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { RootState } from "../state/store"
 import ConicChart from "./sub/conic_chart"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { Crown, Trophy } from "lucide-react"
+import { Crown, Sparkles } from "lucide-react"
 import { useSelector } from "react-redux"
 
 const Stats = () => {
@@ -29,11 +29,16 @@ const Stats = () => {
     return (
         <div className="col-span-2 p-5 grid grid-cols-2 gap-5">
             <Card className="bg-gray-900 border-red-600 col-span-2">
-                <CardHeader className="text-red-600">
-                    <CardTitle>Stats</CardTitle>
-                </CardHeader>
-                <CardContent className="text-white flex flex-col gap-2">
-                    {sortedPlayers.map(player => {
+
+                <CardContent className="text-white flex flex-col gap-2 mt-3">
+                    <div>
+                        <div className="flex justify-between">
+                            <div>Player</div>
+                            <div>Score</div>
+                        </div>
+                        <hr className="border-gray-700 border-1 my-2" />
+                    </div>
+                    {sortedPlayers.map((player, index) => {
                         return (
                             <motion.div
                                 key={player.id}
@@ -43,8 +48,10 @@ const Stats = () => {
                                 className="flex justify-between"
                             >
                                 <div className="flex gap-3 justify-between p-3 rounded-lg">
-                                    <div>{player.name}</div>
-                                    <Crown className="text-red-600" />
+                                    <div className={`${index === 0 && "text-yellow-400 font-semibold"}`}>{player.name}</div>
+                                    <div className={`${index === 0 && "text-yellow-400 font-semibold flex items-center"}`}>
+                                        {index === 0 && <Crown size={16} />}
+                                    </div>
                                 </div>
                                 {
                                     groupedByPlayer[player.id] &&
@@ -54,10 +61,10 @@ const Stats = () => {
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             transition={{ type: "spring", damping: 25 }}
+                                            className={`${index === 0 && "text-yellow-400 font-semibold"}`}
                                         >
                                             {groupedByPlayer[player.id].total}
                                         </motion.div>
-                                        <Trophy className="text-red-600" />
                                     </div>
                                 }
                             </motion.div>
@@ -74,7 +81,7 @@ const Stats = () => {
                     <ConicChart />
                 </CardContent>
             </Card>
-        </div>
+        </div >
     );
 }
 
