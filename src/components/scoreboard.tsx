@@ -31,7 +31,7 @@ const Scoreboard = () => {
         <div className="col-span-3 p-5">
             <AlertDialog>
                 <AlertDialogTrigger asChild>
-                    <Button variant="default" size="icon" className="bg-green-800 hover:bg-green-900 w-auto p-2 text-white hover:text-white mb-3">
+                    <Button variant="default" size="icon" className="bg-green-800 hover:bg-green-900 w-auto p-2 text-white hover:text-white mb-3" disabled={players.length === 0}>
                         <Sparkles /> Enter score
                     </Button>
                 </AlertDialogTrigger>
@@ -40,12 +40,13 @@ const Scoreboard = () => {
                         <AlertDialogTitle className="text-xl font-bold flex justify-between">
                             <div>Scores</div>
                             <motion.div>
-                                <AlertDialogCancel className="border border-gray-800 hover:bg-red-500 bg-transparent p-3 hover:text-white">
+                                <AlertDialogCancel className="border border-gray-800 hover:bg-gray-700 bg-transparent p-3 hover:text-white">
                                     <X />
                                 </AlertDialogCancel>
                             </motion.div>
                         </AlertDialogTitle>
-                        <AlertDialogDescription className="flex flex-col gap-2 p-3">
+                        <AlertDialogDescription></AlertDialogDescription>
+                        <div className="flex flex-col gap-2 p-3">
                             <form>
                                 <div className="flex flex-col gap-2">
                                     {players && players.map(player => {
@@ -62,7 +63,7 @@ const Scoreboard = () => {
                                     })}
                                 </div>
                             </form>
-                        </AlertDialogDescription>
+                        </div>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                         <AlertDialogAction className="bg-green-800 hover:bg-green-900 w-auto text-white focus:bg-green-900 focus:border" onClick={() => {
