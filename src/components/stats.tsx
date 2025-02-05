@@ -81,8 +81,10 @@ const Stats = () => {
                 <CardHeader className="text-red-600">
                     <CardTitle>Limit</CardTitle>
                 </CardHeader>
-                <CardContent className="text-white flex flex-col gap-2 items-center relative">
-                    <ConicChart />
+                <CardContent className="text-white h-fit-content">
+                    <div className="relative">
+                        <ConicChart />
+                    </div>
                 </CardContent>
             </Card>
         </div >

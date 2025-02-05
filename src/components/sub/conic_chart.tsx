@@ -6,13 +6,14 @@ const ConicChart = () => {
     const settings = useSelector((state: RootState) => state.settings)
     const totalScore = scoreboard.reduce((acc, item) => acc + item.score, 0)
     return (
-        <div className="absolute">
-            <div className="w-32 h-32 rounded-full border-red-600 border-8 flex justify-center items-center flex-col">
-                <span className="text-xl font-bold text-red-600">{settings.limit}</span>
-                <span className="text-base text-red-500">{totalScore}</span>
+        <div className="donut-chart relative rounded-full" style={{ "background": `conic-gradient(#dc2626 calc(${totalScore} / ${settings.limit} * 100%), #030bfb 0%)` }}>
+            <div className="donut-text">
+                <span className="score">{totalScore}</span>
+                <span>of {settings.limit}</span>
             </div>
         </div>
     )
 }
+
 
 export default ConicChart
