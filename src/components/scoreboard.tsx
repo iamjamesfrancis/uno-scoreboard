@@ -1,4 +1,4 @@
-import { Sparkles, Trash2, UserRound, UserRoundPen, X } from "lucide-react"
+import { Sparkles, UserRound, X } from "lucide-react"
 import ScoreboardTable from "./sub/scoreboard_table"
 import { Button } from "./ui/button"
 import { AlertDialogHeader, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction, AlertDialogFooter } from "./ui/alert-dialog"
