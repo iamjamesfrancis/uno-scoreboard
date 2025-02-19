@@ -4,17 +4,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { deleteAllPlayers } from "../../state/players/playersSlice"
 import { deleteAllScores } from "../../state/scoreboard/scoreboardSlice"
 import { RootState } from "../../state/store"
-import {
-    AlertDialog,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+
 import { motion } from "motion/react"
-import { AlertDialogAction, AlertDialogCancel } from "../ui/alert-dialog"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter } from "../ui/alert-dialog"
 
 const Reset = () => {
     const dispatch = useDispatch()
