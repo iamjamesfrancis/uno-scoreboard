@@ -1,14 +1,6 @@
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
-
 import { useSelector } from "react-redux"
 import { RootState } from "../../state/store"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table"
 
 const ScoreboardTable = () => {
     const players = useSelector((state: RootState) => state.players.players)

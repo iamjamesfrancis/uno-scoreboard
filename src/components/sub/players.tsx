@@ -1,19 +1,10 @@
-import {
-    AlertDialog,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-
 import { Users, UserRoundPlus, X, UserRound, Trash2, UserRoundPen } from "lucide-react"
 import { Button, } from "../ui/button"
 import { motion } from "motion/react"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "../../state/store"
 import { addPlayer, deletePlayer } from "../../state/players/playersSlice"
+import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/alert-dialog"
 
 const Players = () => {
     const players = useSelector((state: RootState) => state.players.players);

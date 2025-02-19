@@ -1,9 +1,9 @@
-import { Switch } from "@/components/ui/switch"
 import { Label } from "../ui/label"
 import { toggleEnablePlayersReset, toggleEnableScoreEdit, toggleHideTotalScore, toggleEnableScoreLimit, toggleEnableScoreReset, setLimit } from "../../state/settings/settingsSlice"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "../../state/store"
 import { Input } from "../ui/input"
+import { Switch } from "../ui/switch"
 
 const SettingsForm = () => {
     const settings = useSelector((state: RootState) => state.settings)
