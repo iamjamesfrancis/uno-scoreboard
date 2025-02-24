@@ -27,6 +27,11 @@ const counter = createSlice({
             localStorage.setItem('players', JSON.stringify([...state.players, action.payload]));
             state.players.push(action.payload);
         },
+        editPlayer: (state, action) => {
+            const playerIndex = state.players.findIndex(player => player.id === action.payload.id);
+            state.players[playerIndex].name = action.payload.name;
+            localStorage.setItem('players', JSON.stringify(state.players));
+        },
         deletePlayer: (state, action) => {
             localStorage.setItem('players', JSON.stringify(state.players.filter(player => player.id !== action.payload)));
             state.players = state.players.filter(player => player.id !== action.payload);
@@ -38,5 +43,5 @@ const counter = createSlice({
     },
 });
 
-export const { addPlayer, deletePlayer, deleteAllPlayers } = counter.actions;
+export const { addPlayer, deletePlayer, deleteAllPlayers, editPlayer } = counter.actions;
 export default counter.reducer;
