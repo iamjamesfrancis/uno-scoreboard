@@ -2,6 +2,7 @@ import UnoImage from "../assets/uno_icon.png"
 import Players from "./sub/players"
 import SettingsConfig from "./sub/settingsConfig"
 import Reset from "./sub/reset"
+import Info from "./sub/Info"
 
 const Header = () => {
 
@@ -17,6 +18,7 @@ const Header = () => {
                 <Players />
                 <Reset />
                 <SettingsConfig />
+                <Info />
             </div>
         </div>
     )

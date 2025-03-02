@@ -50,5 +50,5 @@ const scoreboard = createSlice({
     },
 });
 
-export const { addScore, deleteScore, deleteAllScores, getGameNumber } = scoreboard.actions;
+export const { addScore, deleteScore, deleteAllScores, getGameNumber, updateScore } = scoreboard.actions;
 export default scoreboard.reducer;
